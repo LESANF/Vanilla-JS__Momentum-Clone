@@ -1,0 +1,112 @@
+변수를 선언할때는 const로, let은 정말 필요할때 사용
+
+camel case = 변수명을 정할때 스페이스대신 대소문자를 바꿔주는것 예 : lowerOfWeek
+
+데이터를 정렬하는방법 두가지 : Array, Object
+
+DB에서 가져온경우 Array를 사용
+
+html의 셀렉터를 js만으로 수정할때 document를 사용하는데 document또한 오브젝트이다.
+
+HTML DOCUMENT는 자바스크립트가 된다.
+
+DOM = Document Object Module
+
+자바스크립트는 html에 있는 모든 요소를 가져오고 그것을 객체로 바꾼다.
+
+우리가 배울 모든함수들, 우리가 찾게 될 모든 객체들의 함수들을 DOM 형태로 변경 가능
+
+
+
+Object안에 Array를 넣을 수 있다.
+
+Array ex) const myInfo = [ 'mon', 'tue', 'wed', '-----' ];
+
+Object 선언은 { } (컬리브라켓)	
+
+Console.log 에서 Console은 Object, log는 function
+
+(function 만드는법)
+= function functionName (){}
+
+js에서 "name is "+ name 하는것보다 `name is ${name}` 편하다
+
+
+---------------------
+(window.event)
+
+window.addEventListener("이벤트" , 이벤트에서 다룰함수);
+
+window.addEventListener에서 함수를 호출할때 functionName()으로 호출하지않는다.
+
+function()은 지금 바로 호출되는것이고.  
+
+window.addEventListener("resize", functionName)은 resize했을때 함수를 호출하는것이다.
+
+()을 붙인 functionName()을 사용하게 되면 resize를 하지않았음에도 함수가 호출될것이다.
+
+이벤트를 다룰 함수를 만들때마다 js는 자동적으로 함수를 객체에 붙인다.
+
+const 변수를 만들때 변수명은 대문자로 ex) const BASE_COLOR 
+
+-----------------------------------
+
+html에 태그에 class=""따로 주지않아도
+
+css파일에 .classname{}으로 클래스부분 먼저 작성가능하다.
+
+js에 함수를 설정하고 "click" 이벤트시 .class를 추가하는 함수로 만들고
+
+동시에 css에도 해당 태그에 transition을 주면 애니메이션을 섞을 수 있다.
+
+만약 Js에서 태그에 className을 부여하는 함수를 사용하기전
+
+애초에 css에서 태그에 class달아놓은 경우 함수가 실행되면 이전 class를 대체하여
+
+함수에서 받은 className으로 적용된다.
+
+contains = 전달한 class값이 그 엘리먼트의 class속성에 존재하면 true, 없으면 false를 리턴
+
+toggle = 인자 하나만 사용했을때 class값을 껏다 켰다. 만일 class가 있으면 지우고 false를 리턴 그렇지않으면
+
+추가하고 true를 리턴.
+
+ClassList의 속성들을 if, else문과  add, remove, contains와 함께 사용하여 toggle의 효과를 나타낼 수 있음.
+
+2.7강의 보면 toggle의 내용을 위와같은 속성으로 예제를잡으며 설명해줌.
+
+ClassList 관련 속성 설명
+https://gafani.tistory.com/entry/javascript-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%86%8D%EC%84%B1-%EB%8B%A4%EB%A3%A8%EA%B8%B0
+
+
+모든 js파일을 만들었을때 기분적으로 초기화 함수를 생성하는 습관을들이자
+ex) function init() {} , init();
+
+querySelector는 해당 인자의 첫번째 요소만 불러들인다.
+-> document.querySelector(".xyz"); 의 뜻은 클래스값이 xyz인 첫번째 요소에접근한다는 뜻이다.
+--------------
+(clock 부분)
+
+setInterval : 두개의 인자값(arguments)을 받고 첫번째 인자로 실행할 함수를 받고, 실행할 시간 간격이다.
+실행간격 시간은 초가아닌 밀리세컨드단위라 3초로 지정해주려면 3000으로 해야한다.
+
+로컬 스토리지, 세션 스토리지의 차이 로컬은 사이트에 계속유지, 세션은 창을 닫을경우 사라짐
+localstorage : .setIteml(arg1, arg2) / arg1은 key값 arg2는 value값
+getIteml을 할경우 (arg1) 즉 key값을 부르면 value값이 따라온다.
+
+
+(localStorage 부분 함수)
+
+greeting.js 명으로 새파일 만듬. 
+
+index.html에 <script src="greeting.js"></script> 추가 해서 연결
+
+html파일에 있는 form에 클래스명 js-form 추가해줌.
+
+greeting.js에서 function init() 함수만들고 init(); 초기화 함수 생성
+
+const 변수로 const form = document.querySelector(".js-form") 추가.
+->이는 form의 class명인 .js-form을 인자로 선택하여  form 자체를 불러오는것이다
+form안의 모든요소와 같이.
+
+const input = form.querySelector("input") 역시 input 요소를 불러오는것.
