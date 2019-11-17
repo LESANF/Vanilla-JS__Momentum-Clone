@@ -93,9 +93,9 @@ setInterval : 두개의 인자값(arguments)을 받고 첫번째 인자로 실�
 로컬 스토리지, 세션 스토리지의 차이 로컬은 사이트에 계속유지, 세션은 창을 닫을경우 사라짐
 localstorage : .setIteml(arg1, arg2) / arg1은 key값 arg2는 value값
 getIteml을 할경우 (arg1) 즉 key값을 부르면 value값이 따라온다.
+---------------------------
 
-
-(localStorage 부분 함수)
+(localStorage 부분 함수) / * 이름을 저장하는 방법 * /
 
 greeting.js 명으로 새파일 만듬. 
 
@@ -110,3 +110,32 @@ const 변수로 const form = document.querySelector(".js-form") 추가.
 form안의 모든요소와 같이.
 
 const input = form.querySelector("input") 역시 input 요소를 불러오는것.
+
+.showing 함수는 display:none으로 보이지않았던것을 block 처리함으로 다시 보여지게한다.
+
+input에 내용을 적고 enter를하면 다른곳으로 보내진다 이게 기본값.
+
+<애초에 .form 과 .grettings 클래스에 display:none으로 보이지않게 해놨고 이를 .showing클래스를 통해 clastList add, remove로 보여주고 안보여주고를 설정해준다 함수로
+
+그것을 막기위해 preventDefault를 사용하는것, enter를 눌러도 값이 없어지지않음. ( 기본동작을 막는 1단계 )
+-> const currentValue = input.value; 다음과같은 코드로 input에 입력에 대한 값을 currentValue에 저장할수있음.
+
+입력할 내용과 ON/OFF처럼 클래스를 추가하고 빼줄 객체인 const USER_LS="currentUser", SHOWING="showing" (showing은 css파일에있는 .showing클래스이다. html파일에는 없음) 를 만듬
+
+초기화 함수인 init()을 실행하면. 안에있는 loadName()함수가 호출
+
+loadName 함수안에서 const currentUser 객체는 localStorage.getItem(USER_LS);의 명령어로 USER_LS라는 키값을 불러온다. 
+-> 즉, loadName 안에서의 const currentUser = 밖에서 정의한 const USER_LS의 값인 currentUser를 문자형으로 받아온다.
+
+초기에는 localStorage에 값이 없기때문에 당연히 currentUser는 null 상태이다.
+
+if문을 통해 null일때 askForName() 함수를 호출, 아닐때 paintGreetings함수를 호출한다.
+
+askForName()함수에서 form.classList.add(SHOWING); 을 통해 안보였던 부분(타이핑할 input창)을 .showing 클래스를 추가함으로써 보이게하고
+form.addEventListener("submit", handleSubmit); [submit = 사용자가 버튼키를 이용하여 폼을제출할 때] 을 통해 웹페이지에서 input을통해 입력한값이 handleSubmit함수를 호출
+
+event.preventDefault();는 이벤트의 기본동작을 중지한다. 고로 input에서 text를 치고 엔터를하면 사라져야할 텍스트를 안사라지게 하는 기능을한다.
+
+
+
+
