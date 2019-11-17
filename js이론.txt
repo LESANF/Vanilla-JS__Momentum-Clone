@@ -136,6 +136,27 @@ form.addEventListener("submit", handleSubmit); [submit = 사용자가 버튼키�
 
 event.preventDefault();는 이벤트의 기본동작을 중지한다. 고로 input에서 text를 치고 엔터를하면 사라져야할 텍스트를 안사라지게 하는 기능을한다.
 
+handleSubmit함수안에 정의된 currentValue에는 input.value값이 저장된다. 즉 submit으로 text타이핑했던 값이 currentValue에 들어간다.
+
+그리고 paintGrettings(currentValue) 함수를 호출하며 매개변수로 currentValue를 넘겨준다.
+
+paintGrettings함수는 받은 currentValue값을 text로 인식하고 
+form.classList.remove(SHOWING)을 실행. SHOWING은 밖에서 정의해둔 const SHOWING = "showing";
+-> 폼에있는 showing 클래스를 제거한다. ( form에있는 showing 클래스를 제거한다는 뜻은 input창을 안보이게 한다는것이다. )
+
+gretting.classList.add(SHOWING) 을통해 h4를 보이게한다.
+gretting.innerText = ` ${text}` 를통해 텍스트를 넣고 그값은 매개변수로받은 text 즉 currentValue (input.value)값을 h4에 넣어 보이게한다.
+
+이방법을 통하면 새로고침을해도 localstorage에 key, value값이 남아있다. 이를 유지시키기위해 saveName이라는 함수를 생성한다.
+
+saveName에는 매개변수로 (text)를 설정하고 handleSubmit안에서 실행된다 text로 갈 매개변수값은 currentValue이다.
+
+localStorage.setItem(key, value)를 통해 (USER_LS, text)의 값을 주고 이는 (currentUser, currentValue)이다. 이렇게하면 새로고침해도 localstorage에 남아있음으로 유지된다.
+
+----------------------------------------- 
+
+
+
 
 
 
