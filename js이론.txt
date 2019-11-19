@@ -153,7 +153,15 @@ saveName에는 매개변수로 (text)를 설정하고 handleSubmit안에서 실�
 
 localStorage.setItem(key, value)를 통해 (USER_LS, text)의 값을 주고 이는 (currentUser, currentValue)이다. 이렇게하면 새로고침해도 localstorage에 남아있음으로 유지된다.
 
------------------------------------------ 
+------------------------------------------------------------------------
+
+텍스트를 남기면 리스트로 남기게 하기위해 todo.js파일 생성
+
+h4밑에 새로운 form (js-toDoForm)클래스 생성후 안에 input 하나생성
+
+폼바로 밑에 ul 생성하고 클래스는 js-toDoList로. 내부의 li는 비움. ( 함수로 만들거기때문.)
+
+
 
 
 
