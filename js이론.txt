@@ -161,6 +161,59 @@ h4밑에 새로운 form (js-toDoForm)클래스 생성후 안에 input 하나생�
 
 폼바로 밑에 ul 생성하고 클래스는 js-toDoList로. 내부의 li는 비움. ( 함수로 만들거기때문.)
 
+마찬가지로 todo.js 파일에 function init()으로 초기화 함수 만들고 호출 init();
+
+init함수 안에는 loadToDos();와 toDoForm.addEventListener("submit",handleSubmit)이 있다.
+
+toDoForm.addEventListener("submit",handleSubmit)의 경우 앞선 gretting과 비슷하게
+->toDoForm이라 앞선 js-form과는 다르다.
+
+값을 넘기고 handleSubmit함수를 호출하여 event를 매개변수로 하고 
+
+event.preventDefault();를 실행 앞에서와 똑같이 input에서 enter를 칠때 값이 넘어가는 기본이벤트를 취소
+
+const currentValue로 toDoInput.value의 값을 저장.
+
+paintToDo(currentValue) currentValue를 paintToDo함수에 매개변수로 넘김 input의 value값을 넘기는의미.
+
+그리고 toDoInput.value의 값은 "" 공백으로 유지시켜줌 리스트가 하나가아니라 여러개일경우
+
+하나를 넘기고 또다시 입력해야 되기 때문에 value값을 ""로 설정.
+
+현재 html파일에는 <ul class="js-toDoList"> </ul>만 있을뿐 내부에 <li></li> 들이 없다.
+그래서 함수로 li를 생성해줘야 하고 그것을 paintToDo함수를 통해 실행한다.
+
+paintToDo(text) 함수는 currentValue의 값을 매개변수로 받았고 그러므로 text = currentValue = input.Value와같다.
+
+li라는 태그를 생성해야되기때문에, const li = document.createElement("li")를 기입
+
+목록을 생성하면 지우는 버튼도 만들어야 하기 때문에 const delBtn = document.createElement("button")도 생성
+
+toDoInput에 작성한 내용이 span으로 들어가야함으로 마찬가지로 const span = document.createElement("span") 생성
+
+
+
+
+
+
+
+
+
+
+
+loadToDos()함수는 localStorage에있는 키값을 가져오는 것이다 
+여기서 키값은 밖에서 const 정의해둔 TODOS_LS이고 이는 "toDos" 이다.
+키값을 가져올때는 getItem을 사용하고 key이름은 "toDos"인 키를 가져온다.
+
+if문에서 가져온 키값이 null이 아닐때 조건으로 내부식이 실행된다.
+
+const parsedToDos = JSON.parse(loadedToDos);
+-> parsedToDos가 JSON.parse함수에 의해 가져온 키값을 String형에서 객체로 바꿔준다.
+
+locaStorage는 String형 즉 문자형만 인정되므로 가져올때도 String형이다. 예를 들어 
+
+value값에 true를해도 이것은 boolean의 true가아닌 String의 true이다. 이를 바꿔주기 위해 JSON.parse가 필요하다.
+
 
 
 
