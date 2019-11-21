@@ -241,12 +241,23 @@ localStorage에는 자바스크립트의 data를 넣을 수 없다 그렇기때�
 여기서 if문을 사용.
 
 만약 loadedToDos가 null아닐때. 즉 LS에서 getItem한 값이 있을때. (이미 저장된값이 있을때)
-다음과 같은 if문을 실행한다.
+다음과 같은 if문을 실행한다. 아닐시에는 함수 탈출해서 init()안에 있는 toDoForm.addEventListener("submit",handleSubmit) 함수실행
+
+(다음은 if가 null이 아닐경우 = locaStorage에값이 들어있는경우)
 const parsedToDos = JSON.parse(loadedToDos); 을 선언한다.
+->parsedToDos를 선언하고 (loadedToDos = localStorage에서 가져온 toDos의 value값)을 다시 객체화 시킨다.
+-> JSON으로 문자열되어있던것을 다시 객체로 바꾸는 용도.
 
-    parsedToDos.forEach(function(toDo) {
-      paintToDo(toDo.text);
+parsedToDos.forEach(function(toDo){ 가져온 객체를 forEach(반복문)으로 다시 출력한다.
+-> foreach의 기본형식
+-> 변수명.forEach(function(매개변수 자기가 지은이름){
+                    함수식 ( ex : function(위와같은 매개변수 자기가지은이름 )
+});
 
+paintToDo(toDo.text); 
+});
+-> 객체화한 toDos의 객체값을 순서대로 출력하기위해 paintToDo(toDo.text)를 반복한다. 
+-> Obj의 text부분만 paintToDO로보내 출력시킨다.
 
 
 btn을 삭제할 수 있게 기능을 넣어야하므로.  delBtn.addEventListener("click", deleteToDo), 버튼을 클릭했을때 이벤트
