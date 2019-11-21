@@ -305,10 +305,9 @@ toDo.id는 push로 인해 객체를 담아놓은 toDos(배열)의 객체 id를 �
 li.id는 생성된 버튼의 id
 toDo.id는 Obj를 push해서 toDos(배열)에 담아놓은 객체의 id를 뜻함
 
-삭제를 해야되기때문에 ************** 소스코드 12줄부터볼것
-
-
-
+let toDos = [];로 바꾼이유는 toDos를 바뀐 cleanToDos로 재정의해야하는데 const는 어울리지않기때문.
+cleanToDos는 삭제가 일어난 새로운 배열이기 때문에 toDos에 덮어야하고
+그 덮은값을 유지하기위해 saveToDos();로 다시 localStorege에 저장해야함
 
 
 loadToDos()함수는 localStorage에있는 키값을 가져오는 것이다 
