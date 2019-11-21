@@ -191,6 +191,69 @@ li라는 태그를 생성해야되기때문에, const li = document.createElemen
 
 toDoInput에 작성한 내용이 span으로 들어가야함으로 마찬가지로 const span = document.createElement("span") 생성
 
+앞선 span, delBtn, li를 ul의 요소로 추가시키기 위해서는 appendchid()라는 함수를 사용한다.  이경우 li에 추가해야하니
+->li.appendchild(span) 이런식으로 부모에게 span을 추가시킨다. btn과 id모두 방식은 동일	
+
+li에 span, btn 을넣고 그 li를 ul에 담아야함으로 <ul class="js-toDoList>즉, toDoList.appendChild(li); 를 넣어준다
+
+toDoList는 함수밖에서 const  toDoList = document.querySelector("js-toDoList")로 생성.
+
+그리고 btn과 span의 text 내용은 innerText로 처리한다 delBtn.innerText ="X"; (X의 경우 이모지인데 HTML 헤더에서 
+
+<meta charset="utf-8"/> 을 추가시켜주지 않으면 이모지가 깨진다. span의 text는 매개변수로 받은 text의 값을 이용해
+
+span.innerText = text; 여기서 text는 paintToDo함수의 매개변수인 text즉 handleSubmit의 currentValue이다.
+
+그리고 여기서 계속 li를 ul에 추가하는것은 양이 많아질 수 있으므로, ary하나를 만들어 담는다. 
+-> let toDos = [];
+
+toDos라는 이름을 가진 배열에 넣을 객체 obj를 만들어야한다. paintToDo함수 내에서 실행이 될것이고
+
+생성할 객체는 const toDoObj = { text : text, id = newId }; 로 객체 생성한다. text는 앞선 매개로받은 text이고
+
+newId는 배열의 길이이다. newId역시 painToDo 함수내에 선언한다. const newId = toDos.length+1; 
+-> length+1을 해주는 이유는 초기 배열에 아무것도 없으므로 0이다. 하지만 하나를 넣었을때 1, 그 1을 id값으로 이용하기위해 +1을한다
+3개를 넣었다고 가정할때 순서대로 1,2,3...의 id 값을 줄 수 있다.
+
+toDoObj의 객체를 생성한 후, toDos 배열에 넣어줘야 하므로, toDos.push(toDoObj)코드를 삽입.
+
+여기까지하면 ul에 li를 넣으면서 id를 부여하고 객체까지 넣을 수 있다. 하지만 새로고침하면 날아간다. localStorage에 저장되어있지 않기때문에
+-> 그래서 paintToDo 함수가 끝나기전 마지막으로 LS에 저장하게 할 수 있는 함수를 하나 호출한다. saveToDos();
+반드시 push한 후 saveToDos함수를 호출할것. 내용을 집어넣어야 localStorage에 넣을 값이 생김.
+
+saveToDos로 넘어가게 되면 하는 일은 localStorage에 setItem을 시켜야한다. 값을 넣는거니 set, 그리고 key, value값이 필요
+-> localStorage.setItem(key, value), 여기서 key값은 TODOS_LS이다. TODOS_LS는 밖에서 const로 toDos로 선언되어있다.
+
+localStorage에 toDos라는 key이름과 toDos라는 배열의 value값을 넣는다. value값을 넣기전에 잠깐 짚고 넘어가야될 건이있다.
+
+localStorage에는 자바스크립트의 data를 넣을 수 없다 그렇기때문에 value에 toDos라는 배열을 넣으면 원하는 결과대로 안나오고 object Object 이런식으로 표시된다.
+
+오직 String형만 localStorage에 저장할 수 있다. 예를들어 key에 hello, value에 true면 우리가아는 boolean의 true가아니라 String의 "true"로 출력이 된다.
+
+넣으려는 value의 String형 변환을 위해 JSON.stringify를 사용한다 정확하게는 자바스크립트 Obj를 String으로 변환
+. 최종식은
+-> localStorage.setItem(TODOS_LS, JSON.stringify(toDos)); 가 되면 우리가 원하는 obj형태로 저장이된다.
+
+다시 loadedToDos함수로가서. 하나의 선언을한다.
+-> const loadedToDos = localStorage.getItem(TODOS_LS); key갑시 TODOS_LS 즉 "toDos" 의 값을가져옴
+이것은 배열로 저장한 key값이다.
+
+여기서 if문을 사용.
+
+만약 loadedToDos가 null아닐때. 즉 LS에서 getItem한 값이 있을때. (이미 저장된값이 있을때)
+다음과 같은 if문을 실행한다.
+const parsedToDos = JSON.parse(loadedToDos); 을 선언한다.
+
+    parsedToDos.forEach(function(toDo) {
+      paintToDo(toDo.text);
+
+
+
+btn을 삭제할 수 있게 기능을 넣어야하므로.  delBtn.addEventListener("click", deleteToDo), 버튼을 클릭했을때 이벤트
+
+deleteToDo 함수로 이동,  function deleteToDo(event) event를 매개로 받고 함수 내에서 btn, li를 선언
+
+const btn = event.target;  btn의 위치를 알려주는 event함수.
 
 
 
