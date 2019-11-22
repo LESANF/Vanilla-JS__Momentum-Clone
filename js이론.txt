@@ -294,10 +294,50 @@ ul에서 태그를삭제한다 li 여기서 li는 태그li가아닌 앞선 butto
 여기까지하면 삭제는 되지만 localStorage에서는 삭제가안된다 새로고침하면 다시 되돌아옴 이걸 해결해야함.
 
 const cleanToDos를 선언 여기서 filter함수를 쓸거임. 이건 true인것만 다시 받아 array로 넣어주는 느낌의 함수.
+filter는 배열의 요소를 읽는것이므로 순차적으로 배열의 모든 요소를 읽는다.
 -> return toDo.id !== parseInt(li.id); 의조건에 true인것만 cleanToDos가된다.
 li.id는 String이기때문에 parseInt로 숫자로 만듬
 
 return식을 해석하자면 toDo.id와 li.id가 틀린것만 반환한다. 각 li마다 고유 id가있다 ary.length+1로 부여해놓음
+/**************************************************************/
+버튼이 3개있다고 가정하자
+text : A
+id : 1
+@@@@
+text : B
+id : 2
+@@@@
+text : C
+id : 3
+
+현재 toDos의 배열안에는 위와같은 Obj(객체가) 3개가 존재한다.
+
+지우려는 버튼은 text : B이며 id : 2인 것이다. 이버튼은 btn.parentNode로 인해 생성된 li이고 li.id는 즉 2를 가르킨다 여기선(String형이다)
+
+toDo.id는 toDos에서 필터된것이며, 원래 가지고있는 배열이다. filter함수에 function(toDo)는 toDos 배열을 읽어내고 반환값이 true인것만 새롭게 뽑아 배열함.
+
+버튼 즉, li의 id는 2이고 filter가 배열을 읽으면서 조건 [toDo.id !== parseInt(li.id)]에 만족하는 true값을 뽑아낸다.
+
+toDo의 id가 li의 id와 같지 않으면 true 이다. 같으면 false.
+
+Obj에서 같은건 text : B, id : 2이다. 이것은 false이며 filter에서 걸러지게된다. (이는 버튼이 눌렀을때 삭제되는 결과와 똑같다)
+
+그러면 남는 true값은 A,C뿐. 이 객체를 담고 있는그릇이 앞서 선언한 const cleanToDos이다. 
+
+cleanToDos는 삭제가 적용된 새로운 배열이고 toDos는 삭제하기전 원본그대로이다. 우리는 localStorage에 저장하는 key 값은 toDos이다.
+
+그러므로 toDos에 cleanToDos의 내용을 덮어써야한다. 이경우 const는 적절하지 않기때문에 let으로 배열을 선언한 이유다.
+
+toDos = cleanToDos; ( 덮어쓰는 코드 )
+
+그리고 덮어쓴 toDos를 다시 LS에 갱신시켜야 되므로 saveToDos(); 다시 호출. 여기까지가 리스트를 삽입, 삭제하는 기능과 새로고침시 LS에 데이터를 남기거나 가져오는방법
+
+<콜백 함수란>
+
+1. 다른 함수의 인자로써 이용되는 함수.
+
+2. 어떤 이벤트에 의해 호출되어지는 함수.
+
 
 버튼이 이미있다고 가정할때. li.id는 btn의 부모즉 li를 가르키고. (deleteToDo의 li선언은 event.target의 btn의 부모 li를 담았기때문)
 toDo.id는 push로 인해 객체를 담아놓은 toDos(배열)의 객체 id를 가르킨다.
@@ -308,7 +348,7 @@ toDo.id는 Obj를 push해서 toDos(배열)에 담아놓은 객체의 id를 뜻�
 let toDos = [];로 바꾼이유는 toDos를 바뀐 cleanToDos로 재정의해야하는데 const는 어울리지않기때문.
 cleanToDos는 삭제가 일어난 새로운 배열이기 때문에 toDos에 덮어야하고
 그 덮은값을 유지하기위해 saveToDos();로 다시 localStorege에 저장해야함
-
+------------------------------------------------------------------------
 
 loadToDos()함수는 localStorage에있는 키값을 가져오는 것이다 
 여기서 키값은 밖에서 const 정의해둔 TODOS_LS이고 이는 "toDos" 이다.
@@ -322,6 +362,9 @@ const parsedToDos = JSON.parse(loadedToDos);
 locaStorage는 String형 즉 문자형만 인정되므로 가져올때도 String형이다. 예를 들어 
 
 value값에 true를해도 이것은 boolean의 true가아닌 String의 true이다. 이를 바꿔주기 위해 JSON.parse가 필요하다.
+-----------------------------------------------------------------------------
+(background)
+
 
 
 
