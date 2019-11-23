@@ -297,6 +297,9 @@ const cleanToDos를 선언 여기서 filter함수를 쓸거임. 이건 true인�
 filter는 배열의 요소를 읽는것이므로 순차적으로 배열의 모든 요소를 읽는다.
 -> return toDo.id !== parseInt(li.id); 의조건에 true인것만 cleanToDos가된다.
 li.id는 String이기때문에 parseInt로 숫자로 만듬
+id는 html에서 id = "1"로 표현되기때문에 string으로 보는게맞다.
+*toDo.id는 toDos의 id이다 toDos배열에는 obj(객체)가있고 거기엔 숫자로된 id가있다.
+하지만 li의 id는 li id="1"이런식으로 "" String이기때문에 정수형으로 바꿔서 비교해야 비교가성립한다.
 
 return식을 해석하자면 toDo.id와 li.id가 틀린것만 반환한다. 각 li마다 고유 id가있다 ary.length+1로 부여해놓음
 /**************************************************************/
@@ -365,10 +368,53 @@ value값에 true를해도 이것은 boolean의 true가아닌 String의 true이�
 -----------------------------------------------------------------------------
 (background)
 
+배경화면을 새로고침으로 랜덤하게 바꾸기위하여 
 
+bg.js파일 생성, html에 script추가
 
+기본적인 function init()함수와 init(); 작성
 
+이미지 파일을 랜덤으로 돌려야되기때문에 랜덤으로 생성될 변수생성
 
+const randomNumber = genRandom(); 
+-> genRandom함수에서 생성된 난수를 randomNumber에 담을것임.
+
+genRandom함수에서
+const number = Math.floor(Math.random() * IMG_NUMBER); 작성
+-> number에 Math함수를 사용하여 생성된 난수를 담을것.
+
+Math함수에서 Math.random을 선언하면 0.xxxx로 랜덤하게 생성된다.
+random()뒤에 * 5는 0~4까지 생성된다는 것이다. 0이아니라 1부터 시작하고싶으면 NUMBER뒤에 + 1을한다
+1~5까지하고싶으면 뒤에 IMG_NUMBER뒤에 +1
+Math.floor은 소수점이 1.1, 1.2, 1.3이면 2로 무조건 올린다 
+
+IMG_NUMBER은 배경화면에 쓰일 이미지의 개수를 말함 const IMG_NUMBER = 5; (이미지5개)
+
+난수를 받은 number변수를 return number해서 다시 init으로 보낸다.
+
+받은 number는 randomNumber로 들어갈것이고. 이걸다시 쓰기위해 paintImage(imgNumber) 함수를 생성하고 paintImage(randomnumber);로 보낸다
+
+paintImage에선 Img 객체를 생성한다.
+
+const backImage = new Image();로 이미지 객체를 생성하고
+backImage.src = `images/${imgNumber}.jpg`; 로 이미지 주소를 불러온다
+그림파일 이름이 1,2,3,4,5 로 5장있어서 ``(백탁) 표시안에 ${imgNumber+1} 을 쓰면 1,2,3,4,5를 랜덤으로 불러 올 수 있다.
+
+그리고 backImage.classList.add("bgImage")로 이미지 객체에 bgImage를 추가해준다.
+
+bgImage 클래스는 index.css파일에서 작성되며 배경화면의 style을 관리하고 animation까지 추가하여 작성한다.
+
+그 후, body.appendChild(backImage);로 body에 backImage를 추가시킨다
+->여기서 backImage는 img객체이고 body는 밖에서 정의한 const body = document.querySelector("body"); 이다. 
+
+const backImage 변수에 new Image();라는 객체를 넣고 backImage.scr로 이미지주소를 준다.
+-> html에선 <img src="images/1.jpg"> 라고 표기된다
+그리고 classList.add("bgImage")를 주면 <img src="images/1.jpg" class="bgImage"> 로 클래스가 추가된다
+
+이렇게 만들어진것을. body에 appendChild(backImage);로 준다. appendChild는 선택한요소안에 자식요소를 주는것.
+-> body에 자식으로 img객체를 넣어준다
+
+----------------------------------------------------------
 
 
 
