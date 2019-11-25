@@ -418,4 +418,64 @@ const backImage 변수에 new Image();라는 객체를 넣고 backImage.scr로 �
 
 (weather API)
 
+위도, 경도 받아오기.
+
+새로운 js파일 weather.js생성 후, html에 script추가.
+
+weather.js에 function init(){}, init(); 추가.
+
+init(){}에 loadCoords(); 추가.
+
+loadCoords(){} 작성
+
+const loadedCords = localStorage.getItem(COORDS);
+
+loadedCords 변수에 LS에서 key값이 COORDS인것을 변수에담음.
+
+COORDS는 밖에서 선언한 변수인 const COORDS = "coords" 이다.
+-> LS의 key값에 접근하기위해 만들어진 변수.
+
+if(loadedCords === null), localStorage에서 가져온 값이 null일때 
+askForCoords(); 함수를 실행한다.
+
+askForCoords함수는 navigator함수를 이용하여 위도, 경도를 얻는함수다.
+
+navigator.geolocation.getCurrentPosition(arg1, arg2)
+requirements 2개가 필요. arg1, arg2
+getCurrentPositon 함수는 2개의 인자를 받는데 함수를 callback 받았을때와 error가 떴을때 이다.
+
+error의경우 function handleGeoError(){ console.log("cant access geolocation"); 로 에러가 떴을때 console.log를 실행하고
+
+성공했을땐 handleGeoSucces함수로간다. 
+
+handleGeoSuccess(position)함수에서 position을 인자로 받고
+position.coords.latitude
+position.coords.longitude 를 하면 위도, 경도를 얻을 수 있다.
+그렇게 얻은 값을
+const latitude = position.coords.latitude로 넣고 longitude도 동일하다.
+const coordsObj = { 
+latitude,
+longitude
+}; 
+const coordsObj 객체를 만든다.
+
+latitude : latitude;
+longitude : longitude; 와같이
+
+선언한 변수명과 key값이 같을경우 위와같이 표현해줄 수 있다.
+
+이렇게 정의한 위도, 경도 Obj를 localStorage에 저장시켜야한다
+Obj를 정의한 다음 saveCoords();함수를 만들고
+매개변수로 Obj 변수명인 coordsObj를 준다.
+
+function saveCoords(coordsObj) 함수에서
+
+localStorage에 들어가는 값은 String이여야하기 때문에 JSON.stringify를 사용
+
+localStoorage.setItem(COORDS, JSON.stringify(coordsObj); 로 값을 넣는다
+
+앞은 key, 뒤는 value값.
+
+마지막으로 openWeatherMap.org 싸이트에서 회원가입을하고 개인 key를 복사하여
+const API_KEY = "~~~~ " ; 저장을한다. 여기까지가 위도, 경도를 받아오는 과정.
 
