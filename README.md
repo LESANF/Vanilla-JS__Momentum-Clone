@@ -1,3 +1,3 @@
 # Vanilla-JS__Momentum-Clone
 
-[X] CSS
+[ X ] CSS
