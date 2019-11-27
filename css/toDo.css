@@ -1,0 +1,28 @@
+.js-toDoForm {
+  height: 30px;
+  width: 100%;
+  text-align: center;
+}
+
+.js-toDoForm input {
+  opacity: 0.7;
+  border: none;
+  border-bottom: 3px solid white;
+  font-size: 25px;
+  background: none;
+  height: 100%;
+  width: 300px;
+  color: white;
+  font-family: "Roboto Mono", monospace;
+}
+
+.js-toDoForm input:focus {
+  opacity: 1;
+  font-family: "Roboto Mono", monospace;
+}
+
+.js-toDoForm input::placeholder {
+  font-size: 25px;
+  color: white;
+  text-align: center;
+}

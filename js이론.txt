@@ -479,3 +479,55 @@ localStoorage.setItem(COORDS, JSON.stringify(coordsObj); 로 값을 넣는다
 마지막으로 openWeatherMap.org 싸이트에서 회원가입을하고 개인 key를 복사하여
 const API_KEY = "~~~~ " ; 저장을한다. 여기까지가 위도, 경도를 받아오는 과정.
 
+API를 가져오기위해 function getWeather(lat,lng){} 함수 생성, 매개변수는 latitude, longitude를 받음
+
+handleGeoSuccess에서 getWeather을 호출해준다. 넘길 매개변수는 latitude, longitude
+
+getWeather에서 API를 받아와야하기 때문에 fetch 함수를 작성.
+->fetch() 안에는 https://를 넣어주고 "" (따움표)가 아닌 ``(백틱)안에 넣어준다.
+->fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric`
+  )
+가져온 데이터를 활용하기위해 then()함수를 쓴다. 그리고 then 은 함수를 하나 호출하는데
+
+그함수가 호출되는 시기는 데이터가 넘어온 후이다. 데이터가 들어오는데 시간이 걸리는 경우도 있기 때문.
+
+then이 하는 역할은 기본적으로 함수를 호출하는 것이고, 데이터가 완전히 들어온 다음 호출 되는것.
+
+then(function(변수이름))을 실행하면 response 데이터를 받을 수 있다.
+
+JSON의 데이터를 받고싶으면 response.json()으로 받아볼 수 있다.
+
+.json으로 데이터를 받으면 console창에서 Promise {<pending>} 으로 뜨는데 이것또한 대기중이라는 뜻이다.
+
+가져온 데이터를 처리하는중이라는 뜻이고, 이것도 기다리게한다. 그럴려면 .then을 사용함.
+
+.then(function(json)을 한번더쓰면 이제 json의 데이터가 표시된다.
+
+temperature, place 변수를 선언하여 받아온 json의 데이터를 담아준다.
+
+temperature에선 json.main.temp; place는 json.name;으로  그리고
+
+weather.innerText = `${temperature} @ ${place}`; 로 화면에 표시해준다.
+->weather은 앞에서 선언한 js-weather(클래스)를 포함한 span 태그.
+
+then을 사용했다. fetch가 완료되길 기다려야 하기 때문이다.
+
+then을 사용하지 않았을 경우, fetch를 기다리지 않고 다음 작업을 지시하면 다음 작업은 fetch가 완료되길 기다리지 않을거고
+
+fetch는 정상적으로 완료되지 않을 수 있다.
+
+
+
+
+${lat}, $[lng}로 고쳐써주고, &appid=${API_KEY}를 추가한다. API_KEY는 밖에서 const 변수로 선언했고 실제 키값을 넣어놓음.
+뒤에 &units=metric은 temp의 표기법을 바꾸는것. 
+
+function loadCoords() 함수안에서
+
+if는 LS에 데이터가 있을때 없을때로 나뉘는데 없을때, 즉 null일때 askForCoords();함수를 호출해
+위도와 경도를받고
+
+null이 아닐때는 const parsedCoords 변수를 선언하고 거기에 LS에있는 value값을 JSON.parse로 정수화시켜서 담는다
+그리고 getWeather함수에 매개변수로 parsedCoords.latitude, parsedCoords.longitude를 준다.
+

@@ -1,0 +1,12 @@
+.js-weather {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: gray;
+  opacity: 0.9;
+  margin-top: 20px;
+  margin-right: 20px;
+  font-family: "Roboto Mono", monospace;
+  font-size: 20px;
+  text-transform: uppercase;
+}

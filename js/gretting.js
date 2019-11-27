@@ -24,7 +24,7 @@ function askForName() {
 function paintGrettings(text) {
   form.classList.remove(SHOWING);
   gretting.classList.add(SHOWING);
-  gretting.innerText = `Bye ${text}`;
+  gretting.innerText = `Welcom, ${text}`;
 }
 
 function loadName() {

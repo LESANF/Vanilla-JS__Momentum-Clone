@@ -1,0 +1,17 @@
+.js-toDoList {
+  list-style: none;
+  padding: 0;
+}
+
+.js-toDoList li {
+  font-family: "Roboto Mono", monospace;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.js-toDoList button {
+  background: none;
+  border: none;
+}

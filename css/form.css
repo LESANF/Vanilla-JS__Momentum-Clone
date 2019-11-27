@@ -1,0 +1,38 @@
+.form {
+  height: 40px;
+  width: 100%;
+  text-align: center;
+}
+
+.form input {
+  opacity: 0.7;
+  border: none;
+  border-bottom: 3px solid white;
+  font-size: 30px;
+  background: none;
+  height: 100%;
+  width: 400px;
+  color: white;
+  font-family: "Roboto Mono", monospace;
+}
+
+.form input:focus {
+  opacity: 1;
+  font-family: "Roboto Mono", monospace;
+}
+
+.form input::placeholder {
+  font-size: 30px;
+  color: white;
+  text-align: center;
+}
+
+.form,
+.greetings {
+  display: none;
+}
+
+.showing {
+  display: block;
+  font-size: 30px;
+}
