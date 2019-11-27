@@ -1,3 +1,7 @@
 # Vanilla-JS__Momentum-Clone
 
-- [x] Mars
+- [x] HTML, CSS
+- [x] Weather API
+- [x] to Do List
+- [x] BackGround Image
+- [x] Clock
