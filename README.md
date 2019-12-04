@@ -1,3 +1,8 @@
+# Languages
+![issue badge](https://img.shields.io/badge/language-HTML5-orange.svg)
+![issue badge](https://img.shields.io/badge/language-CSS-informational.svg)
+![issue badge](https://img.shields.io/badge/language-JS-yellow.svg)
+
 # Vanilla-JS__Momentum-Clone
 
 - [x] HTML, CSS
@@ -13,10 +18,3 @@
 # Result
 
 https://lesanf.github.io/Vanilla-JS__Momentum-Clone/
-
-
-
-# Languages
-![issue badge](https://img.shields.io/badge/language-HTML5-orange.svg)
-![issue badge](https://img.shields.io/badge/language-CSS-informational.svg)
-![issue badge](https://img.shields.io/badge/language-JS-yellow.svg)
