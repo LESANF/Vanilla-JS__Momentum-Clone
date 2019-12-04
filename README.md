@@ -16,5 +16,7 @@ https://lesanf.github.io/Vanilla-JS__Momentum-Clone/
 
 
 
-# Language
-![HtmlCssJs](https://user-images.githubusercontent.com/54767632/69741532-90bbce00-117e-11ea-88d8-fa80fe6272be.jpg)
+# Languages
+![issue badge](https://img.shields.io/badge/language-HTML5-orange.svg)
+![issue badge](https://img.shields.io/badge/language-CSS-informational.svg)
+![issue badge](https://img.shields.io/badge/language-JS-yellow.svg)
